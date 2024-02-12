@@ -11,7 +11,7 @@ class ProfileController extends Controller
 {
     public function show(Request $request)
     {
-        return response()->json($request->user()->only('name', 'email', 'is_admin'));
+        return response()->json($request->user()->only('name', 'email'));
     }
 
     public function update(Request $request)

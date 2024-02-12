@@ -3,9 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\TeamController;
+use App\Http\Controllers\Api\V1\YearController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
 use App\Http\Controllers\Api\V1\Auth\ProfileController;
+use App\Http\Controllers\Api\V1\FootballGameController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
 
@@ -36,3 +38,12 @@ Route::post('auth/register', RegisterController::class);
 Route::post('auth/login', LoginController::class);
 
 Route::get('teams', [TeamController::class, 'index']);
+
+Route::get('years', [YearController::class, 'index']);
+Route::get('years/{year}', [YearController::class, 'show']);
+
+Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
+    Route::post('years', [YearController::class, 'store']);
+    Route::put('years/{year}', [YearController::class, 'update']);
+    Route::delete('years/{year}', [YearController::class, 'destroy']);
+});
