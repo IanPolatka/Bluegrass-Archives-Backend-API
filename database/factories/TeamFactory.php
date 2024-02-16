@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         $name = fake()->name();
-        $slug = str_slug($name, '-');
+        $slug = Str::slug($name, '-');
 
         return [
             'name' => $name,
@@ -29,7 +30,7 @@ class TeamFactory extends Factory
             'state' => fake()->state (),
             'football' => fake()->numberBetween(0, 1),
             'is_active' => fake()->numberBetween(0, 1),
-            'create_by' => User::factory(),
+            'created_by' => User::factory(),
         ];
     }
 }

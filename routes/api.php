@@ -47,3 +47,14 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::put('years/{year}', [YearController::class, 'update']);
     Route::delete('years/{year}', [YearController::class, 'destroy']);
 });
+
+Route::get('/football/today', [FootballGameController::class, 'index']);
+Route::get('/football/future', [FootballGameController::class, 'future']);
+Route::get('/football/past', [FootballGameController::class, 'past']);
+
+Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
+    Route::get('football/{id}', [FootballGameController::class, 'show']);
+    Route::post('football', [FootballGameController::class, 'store']);
+    Route::put('football/{id}', [FootballGameController::class, 'update']);
+    Route::delete('football/{id}', [FootballGameController::class, 'destroy']);
+});
