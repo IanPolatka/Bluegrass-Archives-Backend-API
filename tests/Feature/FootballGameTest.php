@@ -20,11 +20,11 @@ test('it shows games from today', function() {
     
     Team::factory()->count(10)->create();
 
-    $games = FootballGame::factory()->count(10)->create([
+    FootballGame::factory()->count(10)->create([
         'game_date' =>  date('Y-m-d'),
     ]);
 
-    $response = $this->get('/api/v1/football/today');
+    $response = $this->getJson('/api/v1/football/today');
 
     $response->assertJsonCount(1);
 

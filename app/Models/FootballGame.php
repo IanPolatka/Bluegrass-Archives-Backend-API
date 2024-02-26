@@ -38,4 +38,14 @@ class FootballGame extends Model
     {
         return $this->belongsTo(Year::class, 'school_year_id');
     }
+
+    public function the_winner()
+    {
+        return $this->belongsTo(Team::class, 'winning_team');
+    }
+
+    public function the_loser()
+    {
+        return $this->belongsTo(Team::class, 'losing_team');
+    }
 }

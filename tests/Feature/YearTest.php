@@ -72,7 +72,7 @@ test('it updates a year', function () {
     $token = $user->createToken('api-token')->plainTextToken;
 
     $response = $this->withHeaders(['Authorization' => 'Bearer '.$token])
-            ->json('PUT', "/api/v1/years/{$year->id}", $updatedYear);
+            ->json('PUT', "/api/v1/years/{$year->year}", $updatedYear);
 
     $response->assertStatus(200);
 
@@ -89,7 +89,7 @@ test('it deletes a year', function () {
     $token = $user->createToken('api-token')->plainTextToken;
 
     $response = $this->withHeaders(['Authorization' => 'Bearer '.$token])
-            ->json('delete', "/api/v1/years/{$year->id}");
+            ->json('delete', "/api/v1/years/{$year->year}");
 
     $response->assertStatus(200);
 

@@ -15,7 +15,7 @@ class YearResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'    =>  $this->when(auth('sanctum')->check() && auth('sanctum')->user()->is_admin, $this->id),
+            'id'    =>  $this->id,
             'year'  =>  $this->year,
             'current_year'  =>  $this->current_year,
             'created_at'    =>  $this->when(auth('sanctum')->check() && auth('sanctum')->user()->is_admin, $this->created_at),
