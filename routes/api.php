@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\FootballGameController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
+use App\Http\Controllers\Api\V1\FootballTeamScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Route::post('auth/login', LoginController::class);
 Route::get('teams', [TeamController::class, 'index']);
 
 Route::get('years', [YearController::class, 'index']);
-Route::get('years/{year}', [YearController::class, 'show']);
+Route::get('years/{year:id}', [YearController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::post('years', [YearController::class, 'store']);
@@ -58,3 +59,16 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::put('football/{id}', [FootballGameController::class, 'update']);
     Route::delete('football/{id}', [FootballGameController::class, 'destroy']);
 });
+
+Route::get('/football/schedule/{team:slug}', [FootballTeamScheduleController::class, 'index']);
+Route::get('/football/schedule/{team:slug}/{year}', [FootballTeamScheduleController::class, 'year']);
+
+// Route::get('/football/future', [FootballGameController::class, 'future']);
+// Route::get('/football/past', [FootballGameController::class, 'past']);
+
+// Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
+//     Route::get('football/{id}', [FootballGameController::class, 'show']);
+//     Route::post('football', [FootballGameController::class, 'store']);
+//     Route::put('football/{id}', [FootballGameController::class, 'update']);
+//     Route::delete('football/{id}', [FootballGameController::class, 'destroy']);
+// });

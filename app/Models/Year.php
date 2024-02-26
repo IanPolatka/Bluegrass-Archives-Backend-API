@@ -13,4 +13,9 @@ class Year extends Model
         'year',
         'current_year'
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'year';
+    }
 }
