@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\TournamentsController;
 use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\FootballGameController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
+use App\Http\Controllers\Api\V1\TournamentGamesController;
 use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
 use App\Http\Controllers\Api\V1\FootballTeamScheduleController;
 
@@ -67,6 +68,7 @@ Route::get('/football/schedule/{team:slug}/{year}', [FootballTeamScheduleControl
 
 Route::get('/tournaments', [TournamentsController::class, 'index']);
 Route::get('/tournaments/{tournament}', [TournamentsController::class, 'show']);
+Route::get('/tournaments/{tournament}/games', [TournamentGamesController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::post('/tournaments', [TournamentsController::class, 'store']);
