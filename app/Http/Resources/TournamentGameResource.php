@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TournamentResource extends JsonResource
+class TournamentGameResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,10 @@ class TournamentResource extends JsonResource
     {
         return [
             'id'    =>  $this->id,
-            'name'  =>  $this->name,
-            'school_year'  =>  YearResource::make($this->school_year)
+            'position'  =>  $this->position,
+            'game'   =>  FootballGameResource::make($this->game),
+            'round' =>  $this->round,
+            'hide_game_from_bracket'  =>  $this->hide_game_from_bracket,
         ];
     }
 }
