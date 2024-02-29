@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(1);
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->index('name');
             $table->timestamps();
 
             $table->foreign('created_by')->references('id')->on('users');

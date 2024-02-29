@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\TeamController;
 use App\Http\Controllers\Api\V1\YearController;
+use App\Http\Controllers\Api\V1\CoachesController;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\Auth\LogoutController;
 use App\Http\Controllers\Api\V1\TournamentsController;
@@ -71,4 +72,15 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::post('/tournaments', [TournamentsController::class, 'store']);
     Route::put('/tournaments/{tournament}', [TournamentsController::class, 'update']);
     Route::delete('/tournaments/{id}', [TournamentsController::class, 'destroy']);
+});
+
+Route::get('/coaches', [CoachesController::class, 'index']);
+Route::get('/coaches/{coach}', [CoachesController::class, 'show']);
+Route::get('/coaches/{coach}/summary', [CoachesController::class, 'summary']);
+Route::get('/coaches/{coach}/team-summary', [CoachesController::class, 'teamHistory']);
+
+Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
+    Route::post('/coaches', [CoachesController::class, 'store']);
+    Route::put('/coaches/{coach}', [CoachesController::class, 'update']);
+    Route::delete('/coaches/{id}', [CoachesController::class, 'destroy']);
 });
