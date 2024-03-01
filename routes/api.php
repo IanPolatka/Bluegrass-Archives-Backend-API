@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\FootballGameController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
 use App\Http\Controllers\Api\V1\TournamentGamesController;
 use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
+use App\Http\Controllers\Api\V1\FootballClassController;
 use App\Http\Controllers\Api\V1\FootballTeamScheduleController;
 
 /*
@@ -55,6 +56,9 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
 Route::get('/football/today', [FootballGameController::class, 'index']);
 Route::get('/football/future', [FootballGameController::class, 'future']);
 Route::get('/football/past', [FootballGameController::class, 'past']);
+Route::get('/football/classes', [FootballClassController::class, 'index']);
+Route::get('/football/classes/{team:slug}/{year}', [FootballClassController::class, 'show']);
+Route::get('/football/classes/standings/{year}/{class}', [FootballClassController::class, 'yearShow']);
 
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::get('football/{id}', [FootballGameController::class, 'show']);
