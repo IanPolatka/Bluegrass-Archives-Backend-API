@@ -11,9 +11,10 @@ use App\Http\Controllers\Api\V1\TournamentsController;
 use App\Http\Controllers\Api\V1\Auth\ProfileController;
 use App\Http\Controllers\Api\V1\FootballGameController;
 use App\Http\Controllers\Api\V1\Auth\RegisterController;
-use App\Http\Controllers\Api\V1\TournamentGamesController;
-use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
 use App\Http\Controllers\Api\V1\FootballClassController;
+use App\Http\Controllers\Api\V1\TournamentGamesController;
+use App\Http\Controllers\Api\V1\FootballFavoritesController;
+use App\Http\Controllers\Api\V1\Auth\PasswordUpdateController;
 use App\Http\Controllers\Api\V1\FootballTeamScheduleController;
 
 /*
@@ -65,6 +66,15 @@ Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
     Route::post('football', [FootballGameController::class, 'store']);
     Route::put('football/{id}', [FootballGameController::class, 'update']);
     Route::delete('football/{id}', [FootballGameController::class, 'destroy']);
+    Route::get('favorites/football', [FootballFavoritesController::class, 'index']);
+    Route::post('favorites/football/{team}', [FootballFavoritesController::class, 'store']);
+    Route::delete('favorites/football/{team}', [FootballFavoritesController::class, 'destroy']);
+});
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('favorites/football', [FootballFavoritesController::class, 'index']);
+    Route::post('favorites/football/{team}', [FootballFavoritesController::class, 'store']);
+    Route::delete('favorites/football/{team}', [FootballFavoritesController::class, 'destroy']);
 });
 
 Route::get('/football/schedule/{team:slug}', [FootballTeamScheduleController::class, 'index']);
