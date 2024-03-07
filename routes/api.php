@@ -44,6 +44,7 @@ Route::post('auth/register', RegisterController::class);
 Route::post('auth/login', LoginController::class);
 
 Route::get('teams', [TeamController::class, 'index']);
+Route::get('teams/{team:slug}', [TeamController::class, 'show']);
 
 Route::get('years', [YearController::class, 'index']);
 Route::get('years/{year:id}', [YearController::class, 'show']);
