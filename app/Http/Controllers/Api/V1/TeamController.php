@@ -20,6 +20,16 @@ class TeamController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     */
+    public function all(Request $request)
+    {
+            $teams = Team::with('creator')->orderBy('name')->where('state', 'ky')->get();
+
+            return TeamResource::collection($teams);
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
