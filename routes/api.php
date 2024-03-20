@@ -48,6 +48,7 @@ Route::get('teams/kentucky', [TeamController::class, 'all']);
 Route::get('teams/{team:slug}', [TeamController::class, 'show']);
 
 Route::get('years', [YearController::class, 'index']);
+Route::get('years/current', [YearController::class, 'current']);
 Route::get('years/{year:id}', [YearController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {

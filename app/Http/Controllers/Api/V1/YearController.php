@@ -45,6 +45,12 @@ class YearController extends Controller
         return $year->delete();
     }
 
+    public function current()
+    {
+        $year = Year::where('current_year', 1)->first();
+        return new YearResource($year);
+    }
+
     protected function rules()
     {
         return [
